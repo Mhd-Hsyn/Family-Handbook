@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Example</title>
+</head>
+<body>
+    <h1>Socket.IO Example</h1>
+    <div id="messages"></div>
+    <input type="text" id="messageInput">
+    <button onclick="sendMessage()">Send</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+    <script>
+
+        var channel_name = prompt("Enter your channel name")
+        console.log("channel_name===>",channel_name)
+        // const socket = io('http://localhost:8000'); // Adjust the URL if your server is running on a different address
+        const socket = io('http://0.0.0.0:3002'); // Adjust the URL if your server is running on a different address
+        
+        socket.on('connect', () => {
+            console.log('Connected to server');
+        });
+
+        socket.on('join', data => {
+            console.log('Joined:', data);
+        });
+
+        socket.on(channel_name, data => {
+            console.log("data===>",data)
+           
+        });;
+
+
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+        });
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value;
+            console.log("channel_name",channel_name)
+            console.log("message==>",message)
+            socket.emit(channel_name, message);
+            messageInput.value = ''; // Clear input field after sending message
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

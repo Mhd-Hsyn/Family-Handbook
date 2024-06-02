@@ -1,0 +1,4 @@
+.env
+.DS_Storedb.sqlite3
+
+__pycache__/

@@ -1,0 +1,19 @@
+version: "3.7"
+   
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "5005:8000"
+
+  fastapi:
+    container_name: "family_link_realtime"
+    build: family_link_realtime
+    depends_on: 
+      - web
+    restart: unless-stopped
+    ports: 
+      - "5006:5006"
